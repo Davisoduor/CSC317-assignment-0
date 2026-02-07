@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Four Sorting Algorithms</title>
+</head>
+
+<body>
+
+<header>
+    <h1>Four Sorting Algorithms</h1>
+    <p>
+        This webpage presents four common sorting algorithms used in
+        computer science, along with brief explanations and JavaScript
+        implementations.
+    </p>
+</header>
+
+<main>
+
+    <!-- Insertion Sort Section -->
+    <div id="insertion-sort" class="algorithm">
+        <h2>Insertion Sort</h2>
+        <p>
+            Insertion sort is a simple sorting algorithm that builds the sorted
+            array one item at a time. It is much like sorting playing cards in
+            your hands.
+        </p>
+        <pre><code class="language-javascript">
+// Insertion Sort Implementation
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+        </code></pre>
+    </div>
+
+    <!-- Bubble Sort Section -->
+    <div id="bubble-sort" class="algorithm">
+        <h2>Bubble Sort</h2>
+        <p>
+            Bubble sort repeatedly steps through the list, compares adjacent
+            elements, and swaps them if they are in the wrong order.
+        </p>
+        <pre><code class="language-javascript">
+// Bubble Sort Implementation
+function bubbleSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+        </code></pre>
+    </div>
+
+    <!-- Selection Sort Section -->
+    <div id="selection-sort" class="algorithm">
+        <h2>Selection Sort</h2>
+        <p>
+            Selection sort divides the array into a sorted and unsorted region
+            and repeatedly selects the smallest element from the unsorted region.
+        </p>
+        <pre><code class="language-javascript">
+// Selection Sort Implementation
+function selectionSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        let temp = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
+        </code></pre>
+    </div>
+
+    <!-- Merge Sort Section -->
+    <div id="merge-sort" class="algorithm">
+        <h2>Merge Sort</h2>
+        <p>
+            Merge sort is a divide-and-conquer algorithm that splits the array
+            into halves, sorts them, and then merges the sorted halves.
+        </p>
+        <pre><code class="language-javascript">
+// Merge Sort Implementation
+function mergeSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let result = [];
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i]);
+            i++;
+        } else {
+            result.push(right[j]);
+            j++;
+        }
+    }
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}
+        </code></pre>
+    </div>
+
+</main>
+
+<footer>
+    <p>CSC317 – Assignment 0 – Your Name</p>
+</footer>
+
+</body>
+</html>
